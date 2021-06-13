@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api", ScoreRouter);
 
-const port = process.env.PORT | 8080;
+const port = process.env.PORT || 5000;
 
 app.listen(port, async () => {
   try {
