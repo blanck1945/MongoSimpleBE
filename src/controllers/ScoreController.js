@@ -32,6 +32,7 @@ module.exports = {
       console.error(err);
       res.send({
         msg: "Error",
+        err: err,
       });
     }
   },

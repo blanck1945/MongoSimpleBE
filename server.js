@@ -13,14 +13,20 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api", ScoreRouter);
+app.use("/", (req, res) => {
+  res.send({
+    msg: "App runnign",
+  });
+});
 
 const port = process.env.PORT || 5000;
 
-app.listen(port, async () => {
-  try {
-    await MongoConnection.connectToAtlas();
-    console.log(`Example app listening at http://localhost:${port}`);
-  } catch (err) {
-    console.error(err);
-  }
+MongoConnection.connectToAtlas().then(() => {
+  app.listen(port, () => {
+    try {
+      console.log(`Example app listening at http://localhost:${port}`);
+    } catch (err) {
+      console.error(err);
+    }
+  });
 });

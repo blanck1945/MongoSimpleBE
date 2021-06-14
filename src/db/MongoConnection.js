@@ -4,13 +4,13 @@ require("dotenv").config();
 class MongoConnection {
   url = process.env.MONGO;
 
-  connectToAtlas() {
+  async connectToAtlas() {
     const connectionParams = {
       useNewUrlParser: true,
       useCreateIndex: true,
       useUnifiedTopology: true,
     };
-    mongoose.connect(this.url, connectionParams, () => {
+    await mongoose.connect(this.url, connectionParams, async () => {
       try {
         console.log("Connected to database ");
       } catch (err) {
