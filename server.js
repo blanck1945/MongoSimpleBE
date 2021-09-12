@@ -5,6 +5,7 @@ const app = express();
 
 // importing Routes
 const ScoreRouter = require("./src/routes/scoreRoute");
+const PrizeRouter = require("./src/routes/prizeRoutes");
 const MongoConnection = require("./src/db/MongoConnection");
 
 // Middlewares
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api", ScoreRouter);
+app.use("/api", PrizeRouter);
 app.use("/", (req, res) => {
   res.send({
     msg: "App runnign",
